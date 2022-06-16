@@ -1,3 +1,4 @@
+#Author: Ravi Kiran 
 #Get-ADGroupMember
 
 #$Groups=@("Domain Admins","Administrators")
