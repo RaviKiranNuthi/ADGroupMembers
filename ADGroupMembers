@@ -1,0 +1,27 @@
+#Get-ADGroupMember
+
+#$Groups=@("Domain Admins","Administrators")
+
+$PSScriptRoot
+
+$output=@()
+
+$OutFile=$PSScriptRoot+".\Output\ADGroupMembersReport.csv"
+
+$ADGroups=get-content $PSScriptroot".\Input Files\ADGroupNames.txt"
+
+$result = foreach($Group in $ADGroups)
+
+{
+
+    Get-ADGroupMember $Group |
+
+    Select-Object @{n='Group';e={$Group}},
+
+                  @{n='AccountName';e={$_.Name}}
+
+                  }
+
+
+
+$result | Export-csv $OutFile -nti
